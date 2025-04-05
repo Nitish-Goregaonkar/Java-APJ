@@ -1,3 +1,4 @@
+package Multithreading;
 
 public class SchedularEx extends Thread{
     @Override
