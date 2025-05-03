@@ -26,7 +26,6 @@ class Student extends Person {
     public String getCourse() {
         return course;
     }
-
     @Override
     public void displayInfo() {
         System.out.println("Student Name: " + getName());
