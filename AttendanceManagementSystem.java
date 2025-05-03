@@ -16,9 +16,7 @@ abstract class Person {
     // Abstract method
     public abstract void displayInfo();
 }
-
 // 2. Inheritance and Method Overriding
-
 class Student extends Person {
     private String course;
 
