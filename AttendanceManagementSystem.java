@@ -60,7 +60,6 @@ class Attendance {
         System.out.println("Student ID: " + studentId + " Date: " + date + " Present: " + isPresent);
     }
 }
-
 // 4. Main Class
 
 public class AttendanceManagementSystem {
