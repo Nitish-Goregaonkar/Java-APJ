@@ -33,7 +33,6 @@ class Student extends Person {
         System.out.println("Course: " + getCourse());
     }
 }
-
 // 3. Attendance Management System
 
 class Attendance {
