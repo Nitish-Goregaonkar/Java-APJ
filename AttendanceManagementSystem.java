@@ -13,7 +13,6 @@ abstract class Person {
     public String getId() {
         return id;
     }
-
     // Abstract method
     public abstract void displayInfo();
 }
