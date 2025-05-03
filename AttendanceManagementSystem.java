@@ -38,7 +38,6 @@ class Attendance {
     private String studentId;
     private String date;
     private boolean isPresent;
-
     public Attendance(String studentId, String date, boolean isPresent) {
         this.studentId = studentId;
         this.date = date;
