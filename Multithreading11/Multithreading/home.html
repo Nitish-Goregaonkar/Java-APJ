@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Directory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navigation Bar -->
+    <div class="w-full h-16 bg-white shadow flex items-center px-6">
+        <h1 class="text-2xl font-bold text-blue-700">Alumni Directory</h1>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex">
+        <div class="w-3/4 p-6">
+            <div id="directory" class="grid grid-cols-3 gap-6">
+                <div class="profile p-4 bg-white shadow rounded" data-name="Vishal Gore" data-role="Software Engineer">
+                    <h3 class="mt-2 text-lg font-semibold">Vishal Gore</h3>
+                    <p class="text-gray-600">Software Engineer</p>
+                    <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded view-profile">View Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Upload Video -->
+    <div id="profile-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg w-1/2">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/3 p-6 bg-gray-50 rounded-l-lg text-center">
+                    <h2 id="modal-name" class="text-2xl font-bold text-gray-900 mt-2"></h2>
+                    <p id="modal-role" class="text-indigo-600 font-medium"></p>
+                </div>
+                <div class="md:w-2/3 p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Upload Video</h3>
+                    <input type="file" id="video-upload" accept="video/*" class="p-2 border rounded w-full">
+                </div>
+            </div>
+            <div class="border-t px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end space-x-3">
+                <button id="upload-video-btn" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                    Upload Video
+                </button>
+                <button id="close-modal" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const profileModal = document.getElementById("profile-modal");
+            const closeModal = document.getElementById("close-modal");
+            const videoUploadInput = document.getElementById("video-upload");
+            const uploadVideoBtn = document.getElementById("upload-video-btn");
+
+            // Show modal when clicking "View Profile"
+            document.querySelectorAll(".view-profile").forEach(button => {
+                button.addEventListener("click", () => {
+                    const profile = button.closest(".profile");
+                    document.getElementById("modal-name").textContent = profile.getAttribute("data-name");
+                    document.getElementById("modal-role").textContent = profile.getAttribute("data-role");
+                    profileModal.classList.remove("hidden");
+                });
+            });
+
+            // Close modal
+            closeModal.addEventListener("click", () => {
+                profileModal.classList.add("hidden");
+            });
+
+            // Upload video
+            uploadVideoBtn.addEventListener("click", () => {
+                const file = videoUploadInput.files[0];
+                const uploaderName = document.getElementById("modal-name").textContent;
+                
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const videoURL = event.target.result;
+                        const uploadedVideos = JSON.parse(localStorage.getItem("uploadedVideos")) || [];
+
+                        // Create unique ID for every video (Fixes duplicate issue)
+                        const newVideo = {
+                            id: Date.now(),
+                            url: videoURL,
+                            uploader: uploaderName,
+                            date: new Date().toLocaleDateString(),
+                        };
+
+                        uploadedVideos.push(newVideo);
+                        localStorage.setItem("uploadedVideos", JSON.stringify(uploadedVideos));
+
+                        alert("Video uploaded successfully!");
+                        profileModal.classList.add("hidden");
+                        videoUploadInput.value = ""; // Reset input field
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert("Please select a video to upload.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
