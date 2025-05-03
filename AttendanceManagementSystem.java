@@ -50,7 +50,6 @@ class Attendance {
         this.isPresent = true;
         System.out.println("Attendance marked for: " + student.getName() + " on " + this.date);
     }
-
     public void markAttendance(Student student, String date) {
         this.studentId = student.getId();
         this.date = date;
