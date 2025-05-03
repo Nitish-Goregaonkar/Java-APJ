@@ -43,7 +43,6 @@ class Attendance {
         this.date = date;
         this.isPresent = isPresent;
     }
-
     // Method Overloading (Compile-time Polymorphism)
 
     public void markAttendance(Student student) {
