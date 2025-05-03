@@ -34,7 +34,6 @@ class Student extends Person {
     }
 }
 // 3. Attendance Management System
-
 class Attendance {
     private String studentId;
     private String date;
