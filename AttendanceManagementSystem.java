@@ -66,11 +66,9 @@ public class AttendanceManagementSystem {
     public static void main(String[] args) {
         Student student1 = new Student("Nitish Goregaonkar", "2221826", "TY Computer Engineering");
         student1.displayInfo();
-
         Attendance attendance1 = new Attendance(student1.getId(), "2024-08-12", true);
         attendance1.markAttendance(student1);
         attendance1.displayAttendance();
-
         Attendance attendance2 = new Attendance(student1.getId(), "2024-08-13", true);
         attendance2.markAttendance(student1, "2024-08-13");
         attendance2.displayAttendance();
