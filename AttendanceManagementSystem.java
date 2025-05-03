@@ -23,7 +23,6 @@ class Student extends Person {
         super(name, id);
         this.course = course;
     }
-
     public String getCourse() {
         return course;
     }
